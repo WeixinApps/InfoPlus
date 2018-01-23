@@ -1,0 +1,50 @@
+/**index.wxss**/
+page {
+    background: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+form{
+    background:#fff;
+    overflow:hidden;
+    padding:40rpx;
+}
+.span{
+    margin: 30rpx 0 20rpx 0;
+}
+
+.inputBox{
+  border:solid 1rpx #cfcfcf;
+  height:60rpx;
+  display:block;
+  line-height:60rpx;
+  color:rgb(73, 72, 72);
+  padding:0 10rpx;
+}
+textarea#taskDetail{
+  border:solid 1rpx #cfcfcf;
+  width:auto;
+  padding:10rpx;
+}
+picker{
+   border:solid 1rpx #cfcfcf;
+   min-height: 60rpx;   
+   padding:0 10rpx;
+}
+.section{
+    margin-top: 40rpx;
+    height: auto;
+    width: 100%;
+    background: #FFF;
+    padding: 0 0 0 40rpx;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-left: none;
+    border-right: none;
+    transition: all 300ms ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+}

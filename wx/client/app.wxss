@@ -5,3 +5,8 @@
   align-items: center;
   box-sizing: border-box;
 } 
+view{
+  font-family: "SF Pro SC","HanHei SC","Heiti SC","Microsoft Yahei","SF Pro Text","Myriad Set Pro","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 30rpx;
+  font-weight: 300;
+}
