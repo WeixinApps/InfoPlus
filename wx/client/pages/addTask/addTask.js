@@ -1,10 +1,15 @@
+import qcloud from '../../vendor/wafer2-client-sdk/index';
+import config from '../../config';
+import util from '../../utils/util';
+
 const addTask = {
     data:{
         date: '2018-09-01',
         time: '09:00',
         title:'',
         showLoaction:false,
-        detail:''
+        detail:'',
+        shareTicket:''
     },
     onLoad(){
         wx.showShareMenu({
@@ -40,11 +45,29 @@ const addTask = {
         });
     },
     formSubmit(e){
-        this.setData({
-           title: e.detail.value.title,
-           detail: e.detail.value.detail
-        });
+        // this.setData({
+        //    title: e.detail.value.title,
+        //    detail: e.detail.value.detail
+        // });
         console.log(this.data);
+        this.saveData();
+    },
+    saveData(){
+        qcloud.request({
+            url: `${config.service.host}/weapp/demo`,
+            login: true,
+            data: this.data,
+            success (result) {
+                util.showSuccess('请求成功完成')
+                // that.setData({
+                //     requestResult: JSON.stringify(result.data)
+                // })
+            },
+            fail (error) {
+                util.showModel('请求失败', error);
+                console.log('request fail', error);
+            }
+        })
     },
     onShareAppMessage(res) {
         if (res.from === 'button') {
@@ -56,8 +79,8 @@ const addTask = {
           path: '/page/user?id=123',
           success: function(res) {
             // 转发成功
-            console.log(res);
-            console.log(res.shareTickets.pop());
+            this.setData({shareTicket:res.shareTickets.pop()});
+            //this.saveData();
           },
           fail: function(res) {
             // 转发失败
