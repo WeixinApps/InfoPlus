@@ -32,7 +32,13 @@ picker{
    border:solid 1rpx #cfcfcf;
    min-height: 60rpx;   
    padding:0 10rpx;
+   line-height:60rpx;
 }
+picker.date{
+    width: 60%;
+    float: left;
+}
+
 .section{
     margin-top: 40rpx;
     height: auto;
@@ -47,4 +53,10 @@ picker{
     flex-direction: column;
     align-items: flex-start;
     box-sizing: border-box;
+}
+.addTask{
+    margin:20px 0;
+    border-radius:0;
+    font-size:30rpx;
+    height:70rpx;    
 }

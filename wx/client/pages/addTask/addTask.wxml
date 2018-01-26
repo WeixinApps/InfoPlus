@@ -2,51 +2,31 @@
     <view class="taskInfo">
         <view class="title">
             <view class="span">任务标题</view>
-            <input name="taskTitle" class="inputBox" placeholder="输入群任务标题" />
+            <input name="title" class="inputBox" value="{{title}}" placeholder="输入群任务标题" />
         </view>
         <view class="detail">
             <view class="span">任务描述</view>
-            <textarea name="taskDetail" id="taskDetail"  rows="5"></textarea>
+            <textarea name="detail" id="taskDetail" value="{{detail}}" rows="5"></textarea>
         </view>
         <view class="endDate">
             <view class="span">截至日期</view>
-            <picker mode="date" value="{{date}}" start="2018-01-01" end="2018-01-07" bindchange="bindDateChange">
+            <picker mode="date" class="date" value="{{date}}" start="2018-01-01" end="2018-01-07" bindchange="bindDateChange">
                 <view class="picker">
                    {{date}}
                 </view>
-              </picker>
+            </picker>
+            <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+              <view class="picker">
+                 {{time}}
+              </view>
+             </picker>
         </view>
-    </view>
-    
-    <view class="section section_gap">
-      <view class="section_title">switch</view>
-      <switch name="switch"/>
-    </view>
-    <view class="section section_gap">
-      <view class="section_title">slider</view>
-      <slider name="slider" show-value ></slider>
-    </view>
-  
-    <view class="section">
-      <view class="section_title">input</view>
-      <input name="input" placeholder="please input here" />
-    </view>
-    <view class="section section_gap">
-      <view class="section_title">radio</view>
-      <radio-group name="radio-group">
-        <label><radio value="radio1"/>radio1</label>
-        <label><radio value="radio2"/>radio2</label>
-      </radio-group>
-    </view>
-    <view class="section section_gap">
-      <view class="section_title">checkbox</view>
-      <checkbox-group name="checkbox">
-        <label><checkbox value="checkbox1"/>checkbox1</label>
-        <label><checkbox value="checkbox2"/>checkbox2</label>
-      </checkbox-group>
-    </view>
-    <view class="btn-area">
-      <button formType="submit">Submit</button>
-      <button formType="reset">Reset</button>
+        <view class="getLocation">
+          <view class="span">获取地址</view>
+          <switch name="switch" bindchange="getLocationChange"/>
+        </view>
+        <view class="btn-area">
+          <button class="addTask" formType="submit" open-type="share">创建群任务</button>
+        </view>
     </view>
   </form>
