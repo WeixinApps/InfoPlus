@@ -6,6 +6,22 @@ const addTask = {
         showLoaction:false,
         detail:''
     },
+    onLoad(){
+        wx.showShareMenu({
+            withShareTicket: true,
+            success:r=>{
+                console.log(r);
+            }
+        });
+        wx.getShareInfo({
+            shareTicket:1234567,
+            success:(e,d,i)=>{
+                console.log(e);
+                console.log(d);
+                console.log(i);
+            }
+        });
+    },
     bindDateChange(e){
         console.log('picker发送选择改变，携带值为', e.detail.value);
         this.setData({
@@ -30,7 +46,7 @@ const addTask = {
         });
         console.log(this.data);
     },
-    onShareAppMessage: function (res) {
+    onShareAppMessage(res) {
         if (res.from === 'button') {
           // 来自页面内转发按钮
           console.log(res.target)
@@ -40,11 +56,13 @@ const addTask = {
           path: '/page/user?id=123',
           success: function(res) {
             // 转发成功
+            console.log(res);
+            console.log(res.shareTickets.pop());
           },
           fail: function(res) {
             // 转发失败
           }
         }
-      }
+    }
 }
 Page(addTask);
