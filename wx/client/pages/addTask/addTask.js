@@ -4,10 +4,12 @@ import util from '../../utils/util';
 
 const addTask = {
     data:{
-        date: '2018-09-01',
+        date: '2018-01-01',
         time: '09:00',
         title:'',
-        showLoaction:false,
+        showLocation:false,
+        reqName:false,
+        isSingle:false,
         detail:'',
         shareTicket:''
     },
@@ -45,18 +47,19 @@ const addTask = {
         });
     },
     formSubmit(e){
-        // this.setData({
-        //    title: e.detail.value.title,
-        //    detail: e.detail.value.detail
-        // });
+        this.setData({
+           title: e.detail.value.title,
+           detail: e.detail.value.detail
+        });
         console.log(this.data);
-        this.saveData();
     },
     saveData(){
+        //let that = this;
         qcloud.request({
-            url: `${config.service.host}/weapp/demo`,
+            url: `${config.service.host}/weapp/saveGroupTask`,
             login: true,
             data: this.data,
+            method:'post',
             success (result) {
                 util.showSuccess('请求成功完成')
                 // that.setData({
@@ -70,17 +73,19 @@ const addTask = {
         })
     },
     onShareAppMessage(res) {
+        console.log("onshare");
+        let that = this;
         if (res.from === 'button') {
           // 来自页面内转发按钮
           console.log(res.target)
         }
         return {
-          title: '自定义转发标题',
+          title: '我发起了一个群通知，点击查看',
           path: '/page/user?id=123',
           success: function(res) {
             // 转发成功
-            this.setData({shareTicket:res.shareTickets.pop()});
-            //this.saveData();
+            that.setData({shareTicket:res.shareTickets.pop()});
+            that.saveData();
           },
           fail: function(res) {
             // 转发失败
