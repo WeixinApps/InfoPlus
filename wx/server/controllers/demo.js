@@ -7,7 +7,11 @@ const demo = {
         }
     },
     async post(ctx, next){
-
+        console.log(ctx.state);
+        ctx.state.data = {
+            msg:'Hello World3',
+            info:'H'
+        }
     }
 }
 module.exports = demo;

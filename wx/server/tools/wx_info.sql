@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 50717
  Source Host           : localhost
- Source Database       : cAuth
+ Source Database       : wx_info
 
  Target Server Type    : MySQL
  Target Server Version : 50717
@@ -41,13 +41,32 @@ CREATE TABLE `cSessionInfo` (
 DROP TABLE IF EXISTS `cGroupInfo`;
 CREATE TABLE `cGroupInfo` (
   `user_open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_uuid` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_id` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `group_name` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_info` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群组信息';
 
+
+-- ----------------------------
+--  Table structure for `cGroupTask`
+-- ----------------------------
+DROP TABLE IF EXISTS `cGroupTask`;
+CREATE TABLE `cGroupTask` (
+  `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `share_ticket` varchar(100) COLLATE utf8mb4_unicode_ci,
+  `create_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `detail` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_single` tinyint(1) DEFAULT 0,
+  `req_location` tinyint(1) DEFAULT 0,
+  `req_name` tinyint(1) DEFAULT 0,
+  `end_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`task_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群任务信息';
 
 SET FOREIGN_KEY_CHECKS = 1;
