@@ -45,10 +45,8 @@ CREATE TABLE `cGroupInfo` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_id` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_name` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_info` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群组信息';
-
 
 -- ----------------------------
 --  Table structure for `cGroupTask`
@@ -56,7 +54,6 @@ CREATE TABLE `cGroupInfo` (
 DROP TABLE IF EXISTS `cGroupTask`;
 CREATE TABLE `cGroupTask` (
   `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `share_ticket` varchar(100) COLLATE utf8mb4_unicode_ci,
   `create_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -68,5 +65,34 @@ CREATE TABLE `cGroupTask` (
   `end_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`task_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群任务信息';
+
+-- ----------------------------
+--  Table structure for `cTaskShare`
+-- ----------------------------
+DROP TABLE IF EXISTS `cTaskShare`;
+CREATE TABLE `cTaskShare` (
+  `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_id` varchar(100) COLLATE utf8mb4_unicode_ci,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `share_ticket` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`task_id`,`share_ticket`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群任务分享信息';
+
+-- ----------------------------
+--  Table structure for `cTaskStatus`
+-- ----------------------------
+DROP TABLE IF EXISTS `cTaskStatus`;
+CREATE TABLE `cTaskStatus` (
+  `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `read_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `read_count` int NOT NULL DEFAULT 0,
+  `last_read_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_completed` tinyint(1) DEFAULT 0,
+  `completed_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `completed_location` varchar(50) COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`task_id`,`user_open_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群任务处理状态';
 
 SET FOREIGN_KEY_CHECKS = 1;

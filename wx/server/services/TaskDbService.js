@@ -1,11 +1,12 @@
 const { mysql } = require('../qcloud');
 const uuidGenerator = require('uuid/v4')
+const shortid = require('shortid');
 const moment = require('moment')
 const debug = require('debug')('TaskDbService');
 
 const TaskDbService ={
     saveTask(userInfo,task){
-        let task_id = task.id ? task.id: uuidGenerator();
+        let task_id = task.id ? task.id: shortid.generate();//uuidGenerator();
         const create_time = moment().format('YYYY-MM-DD HH:mm:ss')
         const update_time = create_time;
         const create_by = userInfo.openId;
