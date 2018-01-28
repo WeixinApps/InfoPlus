@@ -6,7 +6,7 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -28,6 +28,13 @@ var showSuccess = text => wx.showToast({
     icon: 'success'
 })
 
+// 显示成功提示
+var showTip = text => wx.showToast({
+    title: text,
+    icon: 'none',
+    image: '/resources/images/alert.png'
+})
+
 // 显示失败提示
 var showModel = (title, content) => {
     wx.hideToast();
@@ -39,4 +46,4 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+module.exports = { formatTime, showBusy, showSuccess, showTip, showModel }

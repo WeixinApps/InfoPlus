@@ -17,21 +17,21 @@ form{
 
 .inputBox{
   border:solid 1rpx #cfcfcf;
-  height:60rpx;
-  display:block;
-  line-height:60rpx;
   color:rgb(73, 72, 72);
-  padding:0 10rpx;
+  padding:10rpx;
+  min-height:45rpx;
 }
 textarea#taskDetail{
   border:solid 1rpx #cfcfcf;
   width:auto;
+  min-height:120rpx;
+  color:rgb(73, 72, 72);
   padding:10rpx;
 }
 picker{
    border:solid 1rpx #cfcfcf;
    min-height: 60rpx;   
-   padding:0 10rpx;
+   padding:10rpx;
    line-height:60rpx;
 }
 picker.date{
@@ -57,6 +57,6 @@ picker.date{
 .addTask{
     margin:20px 0;
     border-radius:0;
-    font-size:30rpx;
-    height:70rpx;    
+    font-size:36rpx;
+    padding: 5rpx;    
 }

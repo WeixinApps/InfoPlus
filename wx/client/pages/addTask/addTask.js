@@ -3,20 +3,31 @@ import config from '../../config';
 import util from '../../utils/util';
 
 const addTask = {
+    _data:{
+        today:util.formatTime(new Date()).split(' ')[0]
+    },
     data:{
-        date: '2018-01-01',
-        time: '09:00',
-        title:'',
+        task:{
+            title:'',
+            detail:'',
+            showLocation:false,
+            endTime:'1990-01-01 00:00'
+        },
         showLocation:false,
         reqName:false,
         isSingle:false,
-        detail:'',
         shareTicket:''
     },
     onLoad(){
+        this.setData({
+            date:'选择日期',
+            time:'选择时间',
+            today:this._data.today,
+        });
         wx.showShareMenu({
             withShareTicket: true,
             success:r=>{
+                console.log("show!");               
                 console.log(r);
             }
         });
@@ -31,37 +42,62 @@ const addTask = {
     },
     bindDateChange(e){
         console.log('picker发送选择改变，携带值为', e.detail.value);
+        let time = this.data.time=='选择时间'?'12:00':this.data.time;
         this.setData({
-          date: e.detail.value
+          date: e.detail.value,
+          time:time
         });
+        this.data.task.endTime = this.data.date+' '+this.data.time;
     },
     bindTimeChange(e){
+        let date = this.data.date=='选择日期'?this._data.today:this.data.date;
         console.log('picker发送选择改变，携带值为', e.detail.value);
         this.setData({
+          date: date,
           time: e.detail.value
         });
+        this.data.task.endTime = this.data.date+' '+this.data.time;        
     },
     getLocationChange(e){
         this.setData({
-            showLoaction: e.detail.value
+            showLocation: e.detail.value
         });
     },
     formSubmit(e){
+        console.log(e.detail.value);
+        let task = {...this.data.task,
+            title: e.detail.value.title,
+            detail: e.detail.value.detail,
+            showLocation: e.detail.value.showLocation
+        }
+        console.log(task);
         this.setData({
-           title: e.detail.value.title,
-           detail: e.detail.value.detail
+           task:task
         });
+        this.saveData();
         console.log(this.data);
     },
     saveData(){
-        //let that = this;
+        if(!this.data.task.title.trim()){
+            util.showTip('标题不能为空!');
+            return;
+            //util.showModel('提示','请输入标题');
+        }
         qcloud.request({
-            url: `${config.service.host}/weapp/saveGroupTask`,
+            url: config.service.saveGroupTaskUrl,
             login: true,
-            data: this.data,
+            data: this.data.task,
             method:'post',
             success (result) {
-                util.showSuccess('请求成功完成')
+                console.log(result.data);
+                let taskId = result.data.data.taskId;
+                let nickName = result.data.data.nickName;
+                wx.navigateTo({
+                  url: `../showTask/showTask?taskId=${taskId}&isPreview=1`
+                });
+
+                //util.showSuccess('请求成功完成');
+                
                 // that.setData({
                 //     requestResult: JSON.stringify(result.data)
                 // })
@@ -74,6 +110,24 @@ const addTask = {
     },
     onShareAppMessage(res) {
         console.log("onshare");
+        return {
+            title: '我发起了一个群通知，点击查看',
+            path: '/page/user?id=123',
+            success: function(res) {
+              // 转发成功
+              let shareTicket = res.shareTickets.pop();
+              console.log(shareTicket);
+              //that.setData({shareTicket:shareTicket});
+            },
+            fail: function(res) {
+              // 转发失败
+            }
+          }
+        
+        // while(this._data.checkSave){
+
+        // };
+        /*
         let that = this;
         if (res.from === 'button') {
           // 来自页面内转发按钮
@@ -91,6 +145,7 @@ const addTask = {
             // 转发失败
           }
         }
+        */
     }
 }
 Page(addTask);

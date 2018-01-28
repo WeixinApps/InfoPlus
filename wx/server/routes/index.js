@@ -34,6 +34,7 @@ router.post('/message', controllers.message.post)
 
 router.get('/demo',controllers.demo.get)
 router.post('/demo',controllers.demo.post)
-router.post('/saveGroupTask', validationMiddleware, controllers.saveGroupTask.post)
+router.post('/saveGroupTask', validationMiddleware, controllers.groupTask.post)
+router.get('/getGroupTask', validationMiddleware, controllers.groupTask.get)
 
 module.exports = router

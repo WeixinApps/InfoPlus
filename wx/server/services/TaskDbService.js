@@ -5,6 +5,18 @@ const moment = require('moment')
 const debug = require('debug')('TaskDbService');
 
 const TaskDbService ={
+    getTask(taskId,groupId,shareTicket){
+        let task_id = taskId;
+        return mysql('cGroupTask').where({task_id})
+        .then(res=>{
+            if(!res[0]) return {};
+            return res[0];
+        })
+        .catch(e => {
+            debug('%s: %O', 'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB', e)
+            throw new Error(`${'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB'}\n${e}`)
+        })
+    },
     saveTask(userInfo,task){
         let task_id = task.id ? task.id: shortid.generate();//uuidGenerator();
         const create_time = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -15,7 +27,7 @@ const TaskDbService ={
         const is_single = task.isSingle;
         const req_location = task.showLocation;
         const req_name = task.reqName;
-        const end_time = task.date+" "+task.time;
+        const end_time = task.endTime;
         const entity = {
             create_by,update_time,title,detail,is_single,req_location,req_name,end_time
         };

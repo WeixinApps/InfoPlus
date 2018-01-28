@@ -1,16 +1,16 @@
 <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="taskInfo">
         <view class="title">
-            <view class="span">任务标题</view>
-            <input name="title" class="inputBox" value="{{title}}" placeholder="输入群任务标题" />
+            <view class="span">任务标题:</view>
+            <input name="title" class="inputBox" value="{{task.title}}" placeholder="输入群任务标题" />
         </view>
         <view class="detail">
-            <view class="span">任务描述</view>
-            <textarea name="detail" id="taskDetail" value="{{detail}}" rows="5"></textarea>
+            <view class="span">任务描述:</view>
+            <textarea name="detail" id="taskDetail" value="{{task.detail}}" auto-height rows="3"></textarea>
         </view>
         <view class="endDate">
-            <view class="span">截至日期</view>
-            <picker mode="date" class="date" value="{{date}}" start="2018-01-01" end="2018-01-07" bindchange="bindDateChange">
+            <view class="span">截至日期:</view>
+            <picker mode="date" class="date" value="{{date}}" start="{{today}}" bindchange="bindDateChange">
                 <view class="picker">
                    {{date}}
                 </view>
@@ -22,11 +22,12 @@
              </picker>
         </view>
         <view class="getLocation">
-          <view class="span">获取地址</view>
-          <switch name="switch" bindchange="getLocationChange"/>
+          <view class="span">获取地址:</view>
+          <switch name="showLocation" bindchange="getLocationChange"/>
         </view>
         <view class="btn-area">
-          <button class="addTask" formType="submit" open-type="share">创建群任务</button>
+          <!-- <button class="addTask" formType="submit" open-type="share">创建群任务</button> -->
+          <button class="addTask" formType="submit">创建群任务</button>
         </view>
     </view>
   </form>
