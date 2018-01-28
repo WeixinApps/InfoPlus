@@ -7,7 +7,7 @@ const checkUtility = {
     },
     checkNotNull(ctx,checkArray){
         let data =  ctx.request.body;
-        for(let p in checkArray){
+        for(let p of checkArray){
             if(!data.hasOwnProperty(p)||!data[p]||!data[p].trim()){
                 ctx.state.code=-2;
                 return true;
