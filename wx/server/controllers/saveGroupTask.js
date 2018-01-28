@@ -1,19 +1,11 @@
 const debug = require('debug')('saveGroupTask');
 const taskDbService = require('../services/TaskDbService');
-
-const util = {
-    checkLogin(ctx){
-        if(ctx.state.$wxInfo.loginState !== 1){
-            ctx.state.code=-1;
-            return;
-        }
-    }
-}
-
+const util = require('../utilities/checkUtility');
 
 const saveGroupTask = {
     async post(ctx, next){
-        util.checkLogin(ctx);
+        let checked = !util.checkLogin(ctx) && !util.checkNotNull(ctx,['title']);
+        if(!checked) return;
         debug('%s: %O', 'Req:', ctx.request.body);
         let reqTask = {...ctx.request.body};
         //console.log(ctx.state.$wxInfo);
