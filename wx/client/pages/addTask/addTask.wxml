@@ -2,7 +2,7 @@
     <view class="taskInfo">
         <view class="title">
             <view class="span">任务标题:</view>
-            <input name="title" class="inputBox" value="{{task.title}}" placeholder="输入群任务标题" />
+            <input name="title" class="inputBox" foucus="true" value="{{task.title}}" placeholder="输入群任务标题" />
         </view>
         <view class="detail">
             <view class="span">任务描述:</view>

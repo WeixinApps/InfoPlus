@@ -93,7 +93,7 @@ const addTask = {
                 let taskId = result.data.data.taskId;
                 let nickName = result.data.data.nickName;
                 wx.navigateTo({
-                  url: `../showTask/showTask?taskId=${taskId}&isPreview=1`
+                  url: `../previewTask/showTask?taskId=${taskId}`
                 });
 
                 //util.showSuccess('请求成功完成');

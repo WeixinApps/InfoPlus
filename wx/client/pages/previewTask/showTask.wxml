@@ -1,0 +1,15 @@
+<view>
+    <view class="taskCard {{control.display?'':'hide'}}">
+      <view class="titleSpan">任务预览</view>
+      <view class="title">{{task.title}}</view>
+      <view class="detail">{{task.detail}}</view>
+      <view class="endTime"></view>
+      <!-- <view class="createTime"></view> -->
+     
+      <view class="share">
+          <view class="note">群任务已成功创建,等待发送</view>
+          <button class="shareTask" open-type="share">发送群任务</button>
+      </view>
+
+    </view>
+</view>

@@ -18,7 +18,7 @@ form{
 .inputBox{
   border:solid 1rpx #cfcfcf;
   color:rgb(73, 72, 72);
-  padding:10rpx;
+  padding:15rpx;
   min-height:45rpx;
 }
 textarea#taskDetail{
@@ -58,5 +58,7 @@ picker.date{
     margin:20px 0;
     border-radius:0;
     font-size:36rpx;
-    padding: 5rpx;    
+    padding: 5rpx; 
+    background:rgb(10,198,199);
+    color:#fff;   
 }

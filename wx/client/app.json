@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/addCgi/addCgi",
     "pages/addTask/addTask",
-    "pages/showTask/showTask"
+    "pages/showTask/showTask",
+    "pages/previewTask/showTask"
   ],
   "window":{
     "backgroundColor":"#F6F6F6",
