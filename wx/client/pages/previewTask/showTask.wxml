@@ -1,6 +1,6 @@
 <view>
     <view class="taskCard {{control.display?'':'hide'}}">
-      <view class="titleSpan">任务预览</view>
+      <view class="titleSpan"><text class="infofont icon-process-o"></text>任务预览</view>
       <view class="avatar"></view>
       <view class="title">{{task.title}}</view>
       <view class="info">
