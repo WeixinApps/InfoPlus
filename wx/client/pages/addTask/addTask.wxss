@@ -9,7 +9,9 @@ page {
 form{
     background:#fff;
     overflow:hidden;
-    padding:40rpx;
+    padding:30rpx;
+    margin:30rpx;
+    box-shadow: 1rpx 1rpx 25rpx 5rpx #ddd;
 }
 .span{
     margin: 30rpx 0 20rpx 0;
@@ -21,6 +23,7 @@ form{
   padding:15rpx;
   min-height:45rpx;
 }
+
 textarea#taskDetail{
   border:solid 1rpx #cfcfcf;
   width:auto;
@@ -28,12 +31,14 @@ textarea#taskDetail{
   color:rgb(73, 72, 72);
   padding:10rpx;
 }
+
 picker{
    border:solid 1rpx #cfcfcf;
    min-height: 60rpx;   
    padding:10rpx;
    line-height:60rpx;
 }
+
 picker.date{
     width: 60%;
     float: left;
@@ -54,6 +59,7 @@ picker.date{
     align-items: flex-start;
     box-sizing: border-box;
 }
+
 .addTask{
     margin:20px 0;
     border-radius:0;

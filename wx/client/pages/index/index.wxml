@@ -42,7 +42,8 @@
     <!-- 信道连接测试 -->
     <view class="tunnel">
         <view class="tunnel-text">
-            <text>信道</text>
+            <span class="material-icons">fingerprint</span>
+            
             <switch class="tunnel-switch" bindchange="switchChange" color="#007AFF"/>
         </view>
         <view class="tunnel-text {{ tunnelStatus && tunnelStatus === 'connected' ? 'active' : 'disable' }}" bindtap="sendMessage">

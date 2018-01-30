@@ -4,7 +4,8 @@ import util from '../../utils/util';
 
 const addTask = {
     _data:{
-        today:util.formatTime(new Date()).split(' ')[0]
+        today:util.formatTime(new Date()).split(' ')[0],
+        isSubmit:false
     },
     data:{
         task:{
@@ -64,6 +65,7 @@ const addTask = {
         });
     },
     formSubmit(e){
+        if(this._data.isSubmit) return;
         console.log(e.detail.value);
         let task = {...this.data.task,
             title: e.detail.value.title,
@@ -83,13 +85,15 @@ const addTask = {
             return;
             //util.showModel('提示','请输入标题');
         }
+        util.showBusy('执行中...');
+        this._data.isSubmit=true;
         qcloud.request({
             url: config.service.saveGroupTaskUrl,
             login: true,
             data: this.data.task,
             method:'post',
-            success (result) {
-                console.log(result.data);
+            success: (result)=> {
+                //this._data.isSubmit=false;
                 let taskId = result.data.data.taskId;
                 let nickName = result.data.data.nickName;
                 wx.navigateTo({
@@ -102,9 +106,14 @@ const addTask = {
                 //     requestResult: JSON.stringify(result.data)
                 // })
             },
-            fail (error) {
+            fail: (error)=> {
+                //this._data.isSubmit=false;
                 util.showModel('请求失败', error);
                 console.log('request fail', error);
+            },
+            complete: ()=>{
+                wx.hideToast();
+                this._data.isSubmit=false;
             }
         })
     },

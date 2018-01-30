@@ -16,7 +16,7 @@ page{
 }
 .title{
   font-size:44rpx;
-  border-left:10rpx solid rgb(232,79,135);
+  border-left:10rpx solid rgb(10,198,199);
   margin:16rpx 0;
   padding:8rpx 16rpx;
 }
@@ -36,10 +36,20 @@ page{
   color:rgb(248,210,13);
 }
 button.shareTask{
-  margin:20rpx;
+  margin:20px 0;
+  border-radius:0;
+  font-size:36rpx;
+  padding: 5rpx; 
   background:rgb(10,198,199);
-  color:#fff;
+  color:#fff;   
 }
+
+.info{
+  font-size:26rpx;
+  color:#888;
+  margin:20rpx 0;
+}
+
 .hide{
   display: none;
 }

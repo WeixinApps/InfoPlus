@@ -2,7 +2,7 @@
     <view class="taskInfo">
         <view class="title">
             <view class="span">任务标题:</view>
-            <input name="title" class="inputBox" foucus="true" value="{{task.title}}" placeholder="输入群任务标题" />
+            <input name="title" class="inputBox" focus="true" value="{{task.title}}" placeholder="输入群任务标题" />
         </view>
         <view class="detail">
             <view class="span">任务描述:</view>
@@ -23,7 +23,7 @@
         </view>
         <view class="getLocation">
           <view class="span">获取地址:</view>
-          <switch name="showLocation" bindchange="getLocationChange"/>
+          <switch name="showLocation" bindchange="getLocationChange" color="rgb(10,198,199)"/>
         </view>
         <view class="btn-area">
           <!-- <button class="addTask" formType="submit" open-type="share">创建群任务</button> -->
