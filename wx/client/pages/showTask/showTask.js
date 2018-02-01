@@ -9,8 +9,17 @@ const showTask = {
     onLoad(option){
         wx.showShareMenu({
             withShareTicket: true,
-            success:r=>{             
-                console.log('show share menu');
+            success:r=>{
+                console.log("show!");               
+                console.log(r);
+            }
+        });
+        wx.getShareInfo({
+            shareTicket:1234567,
+            success:(e,d,i)=>{
+                console.log(e);
+                console.log(d);
+                console.log(i);
             }
         });
         

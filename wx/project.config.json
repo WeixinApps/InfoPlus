@@ -12,5 +12,29 @@
 	},
 	"appid": "wxbfef678622aa5a51",
 	"projectname": "%E4%BF%A1%E6%81%AF%2B",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "T",
+					"pathName": "pages/showTask/showTask",
+					"query": "taskId=HkveGal8f",
+					"scene": "1008"
+				}
+			]
+		}
+	}
 }

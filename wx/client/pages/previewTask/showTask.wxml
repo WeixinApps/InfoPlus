@@ -1,16 +1,13 @@
 <view>
     <view class="taskCard {{control.display?'':'hide'}}">
-      <view class="titleSpan"><text class="infofont icon-process-o"></text>任务预览</view>
+      <view class="titleSpan">任务预览</view>
       <view class="avatar"></view>
       <view class="title">{{task.title}}</view>
       <view class="info">
         由 <text class="createdBy">{{task.createdBy}}</text> 创建于 <text class="createdDate">{{task.createdDate}}</text>
       </view>
       <view class="detail">{{task.detail}}</view>
-      <view class="endTime">{{task.endTime}}</view>
-
-
-      <!-- <view class="createTime"></view> -->
+      <view class="endTime {{task.endTime?'':'hide'}}">{{task.endTime}}</view>
      
       <view class="share">
           <view class="note">群任务已成功创建,等待发送</view>

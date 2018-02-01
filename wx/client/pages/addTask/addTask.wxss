@@ -11,7 +11,7 @@ form{
     overflow:hidden;
     padding:30rpx;
     margin:30rpx;
-    box-shadow: 1rpx 1rpx 25rpx 5rpx #ddd;
+    box-shadow: 1rpx 1rpx 15rpx 5rpx #ddd;
 }
 .span{
     margin: 30rpx 0 20rpx 0;
@@ -67,4 +67,8 @@ picker.date{
     padding: 5rpx; 
     background:rgb(10,198,199);
     color:#fff;   
+}
+.endTime{
+  margin:30rpx 0;
+  color:#0ac6c7;
 }
