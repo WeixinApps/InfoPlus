@@ -42,6 +42,7 @@ DROP TABLE IF EXISTS `cGroupInfo`;
 CREATE TABLE `cGroupInfo` (
   `user_open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `create_by_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_id` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_name` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -55,6 +56,7 @@ DROP TABLE IF EXISTS `cGroupTask`;
 CREATE TABLE `cGroupTask` (
   `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `create_by_name` varchar(100) COLLATE utf8mb4_unicode_ci,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -86,6 +88,7 @@ DROP TABLE IF EXISTS `cTaskStatus`;
 CREATE TABLE `cTaskStatus` (
   `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `read_count` int NOT NULL DEFAULT 0,
   `last_read_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -94,5 +97,16 @@ CREATE TABLE `cTaskStatus` (
   `completed_location` varchar(50) COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`task_id`,`user_open_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群任务处理状态';
+
+-- ----------------------------
+--  Table structure for `cTaskStatus`
+-- ----------------------------
+DROP TABLE IF EXISTS `cUserName`;
+CREATE TABLE `cUserName` (
+  `user_open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_open_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户实名信息';
 
 SET FOREIGN_KEY_CHECKS = 1;

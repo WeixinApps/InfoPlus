@@ -1,7 +1,7 @@
 const { mysql } = require('../qcloud');
 const uuidGenerator = require('uuid/v4')
 const shortid = require('shortid');
-const moment = require('moment')
+const moment = require('moment');
 const debug = require('debug')('TaskDbService');
 
 const TaskDbService ={
@@ -17,11 +17,13 @@ const TaskDbService ={
             throw new Error(`${'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB'}\n${e}`)
         })
     },
-    saveTask(userInfo,task){
+    saveTask(userInfo,username,task){
         let task_id = task.id ? task.id: shortid.generate();//uuidGenerator();
         const create_time = moment().format('YYYY-MM-DD HH:mm:ss');
         const update_time = create_time;
         const create_by = userInfo.openId;
+        //const create_name = userInfo.nickName;
+        let create_by_name = username;
         const title = task.title;
         const detail = task.detail;
         const is_single = task.isSingle;
@@ -29,7 +31,7 @@ const TaskDbService ={
         const req_name = task.reqName;
         const end_time = task.endTime;
         const entity = {
-            create_by,update_time,title,detail,is_single,req_location,req_name,end_time
+            create_by,create_by_name,update_time,title,detail,is_single,req_location,req_name,end_time
         };
 
         return mysql('cGroupTask').count('task_id as hasTask').where({
