@@ -19,6 +19,11 @@ const showTask = {
         });
        
         let taskId = option.taskId;
+        this.getTaskInfo(taskId);
+        //console.log(option);
+    },
+
+    getTaskInfo(taskId){
         util.showBusy('正在加载...');
         qcloud.request({
             url: config.service.getGroupTaskUrl,
@@ -40,12 +45,30 @@ const showTask = {
                 console.log('request fail', e);
             }
         });
-
-        console.log(option)
     },
+
+    saveTaskGroupId(taskId,shareTicket,iv,encryptedData){
+        util.showBusy('正在加载...');
+        qcloud.request({
+            url: config.service.saveTaskGroupId,
+            login: true,
+            data: {taskId,shareTicket,iv,encryptedData},
+            method:'post',
+            success: r=> {
+                wx.hideToast();
+               
+               
+            },
+            fail: e=> {
+                util.showModel('请求失败', e);
+                console.log('request fail', e);
+            }
+        });
+    },
+
     onShareAppMessage(res) {
         let path = `/pages/showTask/showTask?taskId=${this.data.task.taskId}`;
-        console.log(path);
+        //console.log(path);
         return {
             title: '我发起了一个群任务，快来一起完成',
             path: path,
@@ -53,6 +76,17 @@ const showTask = {
               // 转发成功
               let shareTicket = res.shareTickets.pop();
               console.log(shareTicket);
+              wx.getShareInfo({
+                shareTicket:shareTicket,
+                success:(e,d,i)=>{
+                    this.saveTaskGroupId(this.data.task.taskId,shareTicket,e.iv,e.encryptedData);
+                    console.log(e);
+                    console.log(d);
+                    console.log(i);
+                 }
+             });
+
+
               //that.setData({shareTicket:shareTicket});
             },
             fail: (err)=> {

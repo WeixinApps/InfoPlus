@@ -25,14 +25,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "T",
 					"pathName": "pages/showTask/showTask",
 					"query": "taskId=HkveGal8f",
-					"scene": "1008"
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "Ojd8uXdpgr5w9tpQtcDSEhlGrREKDrKaGBMo5sit-Bk@cr4dev",
+						"shareKey": "7KIFTywHuxiLGET6pvVTq6lA66-ZulGlF6bYmGxQVor40IyHVlt6vWEtWgSG9AHSyZkeJNWwA6qRi7cRDK6JZA~~"
+					}
 				}
 			]
 		}

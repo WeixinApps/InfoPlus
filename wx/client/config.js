@@ -24,6 +24,7 @@ var config = {
         uploadUrl: `${host}/weapp/upload`,
         saveGroupTaskUrl: `${host}/weapp/saveGroupTask`,
         getGroupTaskUrl: `${host}/weapp/getGroupTask`,
+        saveTaskGroupId: `${host}/weapp/setGroupId`,
     }
 };
 

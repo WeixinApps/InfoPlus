@@ -3,6 +3,18 @@ const moment = require('moment');
 const debug = require('debug')('TaskDbService');
 
 const UserDbService ={
+    getUserInfo(openId){
+        let open_id = openId;
+        return mysql('cSessionInfo').where({open_id})
+        .then(res=>{
+            if(!res[0]) return null;
+            return res[0];
+        })
+        .catch(e => {
+            debug('%s: %O', 'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB', e)
+            throw new Error(`${'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB'}\n${e}`)
+        })
+    },
     getUsername(openId){
         let user_open_id = openId;
         return mysql('cUserName').where({user_open_id})
