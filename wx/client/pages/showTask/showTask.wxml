@@ -4,6 +4,7 @@
       <view class="title">{{task.title}}</view>
       <view class="detail">{{task.detail}}</view>
       <view class="endTime"></view>
+      <open-data type="groupName" open-gid="tGOITu0CsK97KovOSbEbg6iB7-4M4"></open-data>
       <!-- <view class="createTime"></view> -->
      
       <view class="share {{control.isPreview?'':'hide'}}">

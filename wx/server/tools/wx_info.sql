@@ -99,7 +99,7 @@ CREATE TABLE `cTaskStatus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='群任务处理状态';
 
 -- ----------------------------
---  Table structure for `cTaskStatus`
+--  Table structure for `cUserName`
 -- ----------------------------
 DROP TABLE IF EXISTS `cUserName`;
 CREATE TABLE `cUserName` (
@@ -108,5 +108,21 @@ CREATE TABLE `cUserName` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_open_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户实名信息';
+
+-- ----------------------------
+--  Table structure for `cTaskGroupInfo`
+-- ----------------------------
+DROP TABLE IF EXISTS `cTaskGroupInfo`;
+CREATE TABLE `cTaskGroupInfo` (
+  `task_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `share_ticket` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_name` varchar(100) COLLATE utf8mb4_unicode_ci,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`task_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务群组信息';
+
+
 
 SET FOREIGN_KEY_CHECKS = 1;

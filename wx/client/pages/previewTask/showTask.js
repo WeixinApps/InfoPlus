@@ -56,8 +56,9 @@ const showTask = {
             method:'post',
             success: r=> {
                 wx.hideToast();
-               
-               
+                wx.navigateTo({
+                    url: `../showTask/showTask?taskId=${taskId}`
+                });
             },
             fail: e=> {
                 util.showModel('请求失败', e);
@@ -67,7 +68,7 @@ const showTask = {
     },
 
     onShareAppMessage(res) {
-        let path = `/pages/showTask/showTask?taskId=${this.data.task.taskId}`;
+        let path = `/pages/showTask/showTask?taskId=${this.data.taskId}`;
         //console.log(path);
         return {
             title: '我发起了一个群任务，快来一起完成',

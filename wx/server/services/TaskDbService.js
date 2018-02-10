@@ -57,10 +57,36 @@ const TaskDbService ={
             throw new Error(`${'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB'}\n${e}`)
         })
     },
-    saveTaskShare(userInfo,taskId,shareTicket,groupId){
+    saveTaskShare(task_id,share_ticket,group_id,group_name){
         const create_time = moment().format('YYYY-MM-DD HH:mm:ss');
         const update_time = create_time;
+        
+        const entity = {
+            share_ticket,group_id,group_name,update_time
+        };
 
+        return mysql('cTaskGroupInfo').count('task_id as hasTask').where({
+            task_id
+        })
+        .then(res => {
+            // 如果存在用户则更新
+            if (res[0].hasTask) {
+                return mysql('cTaskGroupInfo').update(entity).where({
+                    task_id
+                });
+            } else {
+                return mysql('cTaskGroupInfo').insert({...entity,create_time,task_id});
+            }
+        })
+        .then(() => ({
+            taskId: task_id,
+            groupId:group_id,
+            groupName:group_name
+        }))
+        .catch(e => {
+            debug('%s: %O', 'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB', e)
+            throw new Error(`${'ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB'}\n${e}`)
+        })
     }
 }
 

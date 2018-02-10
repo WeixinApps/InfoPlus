@@ -19,7 +19,7 @@ const groupTask = {
         debug('%s: %O', 'Req:', ctx.request.body);
         let reqTask = {...ctx.request.body};
         let username = await userDbService.getUsername(ctx.state.$wxInfo.userinfo.openId);
-        username = username?username.user_name:NULL;
+        username = username?username.user_name:username;
         let task = await taskDbService.saveTask(ctx.state.$wxInfo.userinfo,username,reqTask);
         ctx.state.data = task;
     }

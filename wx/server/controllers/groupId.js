@@ -12,20 +12,18 @@ const groupId = {
         debug('%s: %O', 'Req:', ctx.request.body);
         let openId = ctx.state.$wxInfo.userinfo.openId;
         let {session_key} = await userDbService.getUserInfo(openId);
-        let {shareTicket,iv,encryptedData} = {...ctx.request.body};
-        let decryptedData;
+        let {taskId,shareTicket,iv,encryptedData} = {...ctx.request.body};
+        let decryptedData,groupId;
         try {
             decryptedData = aesDecrypt(session_key, iv, encryptedData);
             decryptedData = JSON.parse(decryptedData);
-            let groupId = decryptedData.openGId;
+            groupId = decryptedData.openGId;
         } catch (e) {
             debug('Auth: %s: %o', "ERRORS.ERR_IN_DECRYPT_DATA", e);
             throw new Error(`${"ERRORS.ERR_IN_DECRYPT_DATA"}\n${e}`);
         }
-
-
-
-        ctx.state.data = decryptedData;
+        let data = await taskDbService.saveTaskShare(taskId,shareTicket,groupId);       
+        ctx.state.data = data;
     }
 }
 module.exports = groupId;
