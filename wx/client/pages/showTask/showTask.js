@@ -31,9 +31,7 @@ const showTask = {
             data: {taskId},
             success: r=> {
                 wx.hideToast();
-                this.setData({
-                    control:{isPreview:isPreview,display:true}
-                });
+                
                 let task = r.data.data;
                 //console.log(task);
                 this.setData({
