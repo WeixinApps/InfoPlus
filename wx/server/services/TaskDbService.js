@@ -7,7 +7,7 @@ const debug = require('debug')('TaskDbService');
 const TaskDbService ={
     getTask(taskId,groupId,shareTicket){
         let task_id = taskId;
-        return mysql('cGroupTask').where({task_id})
+        return mysql('cGroupTask').leftJoin('cTaskGroupInfo','cGroupTask.task_id','cTaskGroupInfo.task_id').where({task_id})
         .then(res=>{
             if(!res[0]) return {};
             return res[0];

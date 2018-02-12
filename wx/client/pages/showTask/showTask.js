@@ -23,11 +23,6 @@ const showTask = {
             }
         });
         
-        let isPreview = option.isPreview==1?true:false;
-        this.setData({
-            control:{isPreview:isPreview,display:false}
-        });
-       
         let taskId = option.taskId;
         util.showBusy('正在加载...');
         qcloud.request({
