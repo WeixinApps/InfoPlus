@@ -31,7 +31,7 @@ const TaskDbService ={
         const req_name = task.reqName;
         const end_time = task.endTime;
         const entity = {
-            create_by,create_by_name,update_time,title,detail,is_single,req_location,req_name,end_time
+            create_by,create_by_name,create_time,update_time,title,detail,is_single,req_location,req_name,end_time
         };
 
         return mysql('cGroupTask').count('task_id as hasTask').where({
